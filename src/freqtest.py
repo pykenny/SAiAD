@@ -88,9 +88,8 @@ def freqtest_occur(textname, chapters):
         fp.write(linetmp)
     fp.close()
 
-
     for i in range(1, totalch+1, 1):
-        fp = open(fp = open("./Text/%s/%03d.txt" % (textname, i), 'r', encoding='utf-8'))
+        fp = open("./Text/%s/%03d.txt" % (textname, i), 'r', encoding='utf-8')
         chaptext = fp.read()
         chaptext.replace('。', '')
         for g in gramlist:
@@ -117,7 +116,7 @@ def freqtest_occur(textname, chapters):
             print("%d - %d: %f" % (i, j, res_out[i][j]))
 
     # Output Result
-    filename = "./Result/freqdifference_byratio_%s.txt" % (textname)
+    filename = "./Result/freqdifference_byoccur_%s.txt" % (textname)
     fp = open(filename, "w", encoding='utf-8')
     for i in range(0, unitnum, 1):
         for j in range(0, unitnum, 1):
