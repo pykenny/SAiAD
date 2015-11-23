@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 import regex as re
+import time
+from datetime import datetime
 
 def affix(gram, text, isprefix, length):
     if isprefix == True:
@@ -28,6 +30,8 @@ def findgram(gram, text):
     return result
 
 def findaffix(textname, gram, isprefix, length):
+    timestampstr = datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+    
     # CHECK PARAMETERS
     if type(textname) != str or type(gram) != str or type(isprefix) != bool or type(length) != int:
         print("Wrong type in parameters!")
@@ -59,9 +63,9 @@ def findaffix(textname, gram, isprefix, length):
     result = affix(gram, fulltext, isprefix, length)
 
     if isprefix == True:
-        filename = "./Result/affix_%s_%s_pre%d.txt" % (textname, gram, length)
+        filename = "./Result/affix_%s_%s_pre%d_%s.txt" % (textname, gram, length, timestampstr)
     else:
-        filename = "./Result/affix_%s_%s_post%d.txt" % (textname, gram, length)
+        filename = "./Result/affix_%s_%s_post%d_%s.txt" % (textname, gram, length, timestampstr)
     print("Output result to %s..." % (filename))
     fp = open(filename, 'w')
     for i in result:
@@ -71,6 +75,7 @@ def findaffix(textname, gram, isprefix, length):
     print("Done!")
     
 def findsentence(gram, textname):
+    timestampstr = datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
     # CHECK PARAMETERS
     if type(gram) != str or type(textname) != str:
         print("Parameters should be type str.")
@@ -100,7 +105,7 @@ def findsentence(gram, textname):
         print("Search: Chapter %03d..." % (i + 1))
         result.append(findgram(gram, chaptext[i]))
 
-    filename = "./Result/findsentence_%s_%s.txt" % (textname, gram)
+    filename = "./Result/findsentence_%s_%s_%s.txt" % (textname, gram, timestampstr)
     fp = open(filename, 'w', encoding='utf-8')
     for i in range(0, len(result), 1):
         if len(result[i]) == 0:

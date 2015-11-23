@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 import regex as re
 from math import log
+import time
+from datetime import datetime
 from operator import attrgetter
 
 # class GramRank:
@@ -10,7 +12,7 @@ class GramRank:
         self.freq = f
         self.rank = r
 
-def yangtest(textname, chapters):
+def yangtest(textname, chapters, start = 1, textencoding='utf-8'):
     # Check Parameters
     if type(textname) != str or len(textname) == 0:
         print("Parameter 'textname' should be a non-empty string.")
@@ -23,18 +25,22 @@ def yangtest(textname, chapters):
         if i <= 0:
             print("Each unit should include at least one chapter.")
             return
-            
+    if type(start) != int or start < 1:
+        print("Parameter 'start' should be a positive integer.")
+        return
+      
+    unitnum = len(chapters)
+    totalch = sum(chapters)
+    timestampstr = datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+    
     # Check Files
     try:
-        for i in range(1, sum(chapters)+1, 1):
-            fp = open("./Text/%s/%03d.txt" % (textname, i), 'r', encoding='utf-8')
+        for i in range(start, totalch+1, 1):
+            fp = open("./Text/%s/%03d.txt" % (textname, i), 'r', encoding=textencoding)
             fp.close()
     except FileNotFoundError:
         print("Chapter NO.%03d does not exist!" % (i))
         return
-
-    unitnum = len(chapters)
-    totalch = sum(chapters)
     
     unitpoint = []
     if unitnum == 1:
@@ -48,8 +54,8 @@ def yangtest(textname, chapters):
     fulltext = ""
     unittext = []
     unittmp = ""
-    for i in range(1, totalch+1, 1):
-        fp = open("./Text/%s/%03d.txt" % (textname, i), 'r', encoding='utf-8')
+    for i in range(start, totalch+1, 1):
+        fp = open("./Text/%s/%03d.txt" % (textname, i), 'r', encoding=textencoding)
         rtext = fp.read()
         fulltext = fulltext + rtext
         unittmp = unittmp + rtext
@@ -144,8 +150,9 @@ def yangtest(textname, chapters):
     print("End distance calculation between each unit.")
 
     # PRINT OUT RESULT
-    filename = "./Result/YangTestResult_%s.txt" % (textname)
-    fp = open(filename, "w", encoding="utf-8")
+    filename = "./Result/yangtest_%s_%s.txt" % (textname, timestampstr)
+    fp = open(filename, "w", encoding=textencoding)
+    fp.write("%d - %d, %s\n" % (start, start + totalch - 1, str(chapters)))
     for x in range(0, unitnum, 1):
         for y in range(0, unitnum, 1):
             if x >= y:
