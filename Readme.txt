@@ -1,4 +1,7 @@
-﻿*************************************************************
+﻿# 2015/11/23 Functions in this package is under adjustment,
+#            So some descriptions in this file are obsolete.
+
+*************************************************************
 2014 Spring Project -- Stylish Analysis in Authorship Dispute
 README
 		                             B98703010 謝博宇
