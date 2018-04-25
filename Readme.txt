@@ -1,9 +1,12 @@
 # 2018/04/25 This project is no longer maintained.
 #            Instead, all the work was migrated to DocuSky as a demonstrative tool.
 # 
-#            Docusky: http://docusky.digital.ntu.edu.tw/
-#            Text Stylish Tool: http://docusky.digital.ntu.edu.tw/DocuSky/docuTools/TextStylishTool/textstylish.html
-#            Slide about DocuSky, includes usage of the new tool: https://bit.ly/2vPUppi
+#            Docusky:
+#                http://docusky.digital.ntu.edu.tw/
+#            Text Stylish Tool:
+#                http://docusky.digital.ntu.edu.tw/DocuSky/docuTools/TextStylishTool/textstylish.html
+#            Slide about DocuSky, includes usage of the new tool:
+#                https://bit.ly/2vPUppi
 #
 # 2015/11/23 Functions in this package is under adjustment,
 #            So some descriptions in this file are obsolete.
